@@ -1,0 +1,9 @@
+* {
+    background-color: black;
+    color: white;
+}
+.player iframe{
+    width: 1900px;
+    height: 890px;
+    text-align: center;
+}
