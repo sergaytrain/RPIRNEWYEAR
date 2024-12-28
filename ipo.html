@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратный отсчет</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #222; color: white; }
+        .countdown { font-size: 2em;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Обратный отсчет до 31 декабря 2024 года, 21:30</h1>
+    <div class="countdown" id="countdown"></div>
+
+    <script>
+        // Устанавливаем дату и время для обратного отсчета
+        const targetDate = new Date('2024-12-31T21:30:00+05:00'); // Уральское время (UTC+5)
+        
+        function updateCountdown() {
+            const now = new Date();
+            const distance = targetDate - now;
+
+            // Вычисления для времени
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Отображение результата
+            document.getElementById('countdown').innerHTML = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+
+            // Если время вышло
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById('countdown').innerHTML = "Время вышло!";
+            }
+        }
+
+        // Обновляем отсчет каждую секунду
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
